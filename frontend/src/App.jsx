@@ -11,7 +11,7 @@ import {
   ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from "recharts";
 
-const DEFAULT_API = "http://127.0.0.1:8001";
+const DEFAULT_API = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8001";
 const API_BASE = (() => {
   try { return localStorage.getItem("sentinelx.apiBase") || DEFAULT_API; }
   catch { return DEFAULT_API; }
