@@ -1,0 +1,346 @@
+
+/* =========================================================
+   SENTINEL X — OBSIDIAN SOC VISUAL LAYER
+   Works with the existing App.jsx and Tailwind classes.
+   ========================================================= */
+
+:root {
+  --sx-bg: #050711;
+  --sx-sidebar: #070b16;
+  --sx-panel: #0b1120;
+  --sx-panel-raised: #0f192b;
+  --sx-cyan: #22d3ee;
+  --sx-violet: #a78bfa;
+  --sx-green: #34d399;
+  --sx-amber: #fbbf24;
+  --sx-red: #fb7185;
+  --sx-border: rgba(148, 163, 184, 0.13);
+}
+
+body {
+  background: var(--sx-bg);
+}
+
+/* Subtle technical grid behind the workspace */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.17;
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.035) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* Smooth interactions */
+button,
+input,
+section,
+aside {
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--sx-cyan);
+  outline-offset: 3px;
+}
+
+/* Sidebar */
+aside {
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(34, 211, 238, 0.075), transparent 45%),
+    rgba(7, 11, 22, 0.97) !important;
+  border-color: rgba(148, 163, 184, 0.11) !important;
+}
+
+aside nav button[ class*="bg-cyan-400" ] {
+  box-shadow:
+    inset 3px 0 0 var(--sx-cyan),
+    0 0 22px rgba(34, 211, 238, 0.045);
+}
+
+/* Main application header */
+main > header {
+  background: rgba(5, 7, 17, 0.86) !important;
+  border-color: var(--sx-border) !important;
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Dashboard panels and cards */
+main section {
+  border-color: var(--sx-border) !important;
+}
+
+main section.rounded-2xl {
+  background:
+    linear-gradient(145deg, rgba(16, 25, 43, 0.92), rgba(8, 13, 25, 0.96)) !important;
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.018);
+}
+
+main section.rounded-2xl:hover {
+  border-color: rgba(34, 211, 238, 0.19) !important;
+}
+
+/* Large metric cards — color and depth */
+main .grid > div.rounded-2xl.border {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgba(16, 25, 43, 0.98), rgba(8, 13, 25, 0.98)) !important;
+  border-color: rgba(148, 163, 184, 0.14) !important;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+main .grid > div.rounded-2xl.border::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(34, 211, 238, 0.4),
+    transparent
+  );
+  pointer-events: none;
+}
+
+main .grid > div.rounded-2xl.border:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.3) !important;
+  box-shadow:
+    0 16px 35px rgba(0, 0, 0, 0.24),
+    0 0 22px rgba(34, 211, 238, 0.035);
+}
+
+/* Make metric values stand out */
+main .grid > div.rounded-2xl.border > div > div > p.text-3xl {
+  font-size: clamp(1.9rem, 3vw, 2.45rem);
+  font-weight: 750;
+  letter-spacing: -0.055em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sidebar status panel */
+aside .rounded-xl.border.bg-slate-900\/70 {
+  background: rgba(13, 22, 38, 0.88) !important;
+  border-color: rgba(34, 211, 238, 0.13) !important;
+}
+
+/* Primary actions */
+main button.bg-cyan-400 {
+  background: linear-gradient(105deg, #22d3ee, #67e8f9) !important;
+  box-shadow: 0 5px 20px rgba(34, 211, 238, 0.12);
+  color: #041019 !important;
+}
+
+main button.bg-cyan-400:hover:not(:disabled) {
+  box-shadow: 0 7px 26px rgba(34, 211, 238, 0.24);
+  filter: brightness(1.06);
+}
+
+main button:disabled {
+  box-shadow: none;
+}
+
+/* Inputs */
+main input {
+  background-color: rgba(4, 8, 17, 0.88) !important;
+  border-color: rgba(148, 163, 184, 0.17) !important;
+}
+
+main input:focus {
+  border-color: rgba(34, 211, 238, 0.65) !important;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.075);
+}
+
+/* History table */
+main table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+main thead {
+  background: rgba(4, 8, 17, 0.8) !important;
+}
+
+main tbody tr {
+  transition: background-color 150ms ease;
+}
+
+main tbody tr:hover {
+  background: rgba(34, 211, 238, 0.045) !important;
+}
+
+main th {
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+
+main td {
+  border-color: rgba(148, 163, 184, 0.07);
+}
+
+/* Risk labels */
+main span.rounded-full.border {
+  font-weight: 650;
+  letter-spacing: 0.015em;
+}
+
+/* Results: stronger score hierarchy */
+main .text-4xl {
+  letter-spacing: -0.065em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Nested investigation cards */
+main .bg-\[\#080d17\] {
+  background: rgba(4, 8, 17, 0.8) !important;
+}
+
+/* Charts and empty states */
+main .recharts-cartesian-grid-horizontal line {
+  stroke: rgba(148, 163, 184, 0.1);
+}
+
+main .recharts-tooltip-wrapper {
+  outline: none;
+}
+
+/* Mobile navigation */
+@media (max-width: 767px) {
+  main > header {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  main .mx-auto.max-w-7xl {
+    padding-top: 24px;
+  }
+
+  main section.rounded-2xl {
+    border-radius: 16px;
+  }
+
+  main .grid > div.rounded-2xl.border:hover {
+    transform: none;
+  }
+}
+
+/* Reduce motion for users who request it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+
+
+/* SENTINEL X — OBSIDIAN VISUAL OVERRIDE */
+
+html,
+body,
+#root {
+  background: #090909 !important;
+  color: #f5f5f5 !important;
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse at 50% 0%, #191919 0%, transparent 55%) !important;
+}
+
+/* Replace slate-blue surfaces with charcoal */
+[class*="bg-slate-950"],
+[class*="bg-slate-900"],
+[class*="bg-slate-800"] {
+  background-color: #111111 !important;
+}
+
+/* Give panels a graphite finish */
+main section.rounded-2xl,
+main .rounded-2xl.border {
+  background-color: #141414 !important;
+  border-color: #292929 !important;
+}
+
+/* Neutralize the blue-toned borders */
+[class*="border-slate-"] {
+  border-color: #292929 !important;
+}
+
+/* Cleaner, brighter typography */
+h1,
+h2,
+h3 {
+  color: #fafafa !important;
+}
+
+p,
+label,
+th {
+  color: #a3a3a3;
+}
+
+/* Crisp buttons and inputs */
+input,
+select,
+textarea {
+  background-color: #0b0b0b !important;
+  border-color: #333333 !important;
+  color: #f5f5f5 !important;
+}
+
+button {
+  transition: background-color 160ms ease,
+              border-color 160ms ease,
+              transform 160ms ease;
+}
+
+button:hover {
+  border-color: #525252;
+}
+
+/* Preserve recognizable risk colors */
+.text-emerald-400,
+.text-green-400 {
+  color: #4ade80 !important;
+}
+
+.text-amber-400,
+.text-yellow-400 {
+  color: #fbbf24 !important;
+}
+
+.text-red-400 {
+  color: #fb7185 !important;
+}
+
+/* Mobile-safe layout */
+body {
+  min-width: 320px;
+}
+
+
+
+body {
+  background: #ff00ff !important;
+}
