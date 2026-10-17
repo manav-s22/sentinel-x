@@ -60,7 +60,7 @@ app.add_middleware(
         "http://127.0.0.1:5173",
         "http://localhost:5174",
         "http://127.0.0.1:5174",
-        "https://sentinel-8eeiw0i06-ms31.vercel.app/",
+        "https://sentinel-6ujef3hvs-ms31.vercel.app",
     ],
     allow_credentials=False,
     allow_methods=["GET", "POST", "PATCH", "DELETE"],
